@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<link media="only screen and (max-device-width:480px)" href="/stylesheets/iphone.css" type="text/css" rel="stylesheet"/>
+<meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no /">
+<% if  params[:tag] == '' || params[:tag] == nil then %>
+<meta http-equiv="refresh" content="300;URL=/chat?tag=">
+<% end %>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Chat: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold', 'will_paginate' %><%#<--- 'will_paginate'を追記 %>
+<script type="text/javascript" language="javascript">
+<!--
+// -->
+</script>
+<%= stylesheet_link_tag "application" %>
+<%= javascript_include_tag :defaults %>
+</head>
+<body　 class="<%= params[:controller] %>"　>
+    <div id="header">
+      <h1><%= link_to 'vxChat', '/chat?tag=' %></h1>
+      <% if logged_in? and current_user.valid? %>
+        <div id="account"><%= link_to '設定', edit_user_path(current_user) %> <%= link_to 'ログアウト', session_url(:id => session.session_id), :method => :delete, :class => 'small delete' %></div>
+        <ul id="nav">
+          <li id="messages"><%= link_to "★全件表示", '/chat?tag=' %></li>
+          <li id="messages"><%= link_to "業務連絡（#Gyomu）", '/chat?tag=%23Gyomu' %></li>
+          <li id="messages"><%= link_to "JIRA(#JIRA)", '/chat?tag=%23JIRA' %></li>
+          <li id="messages"><%= link_to "雑談（#Zatsu）", '/chat?tag=%23Zatsu' %></li>
+        </ul>
+      <% end %>
+    </div>
+
+    <div id="utility">
+      <%= flash :notice %>
+      <% if logged_in? and current_user.valid? %>
+        <div id="status">
+          <ul><li><%= link_to current_user.name, user_url(:id => current_user) %><span id="my_status"><%= current_user.status.blank? ? "（クリックして状態を入力）" : h(current_user.status) << h((current_user.updated_at + 9*60*60).strftime("(%d日 %H:%M)")) %></span></li></ul>
+          <%= javascript_tag "new Ajax.InPlaceEditor('my_status', '#{user_url(:id => current_user)}', {loadTextURL:'#{status_user_url(:id => current_user)}', loadingText:'読み込み中...', savingText:'更新中...', okText:'更新', cancelText:'キャンセル', clickToEditText:'クリックして状態を編集', ajaxOptions:{method:'put'}, callback:function(form, value){ return 'user[status]='+value; }});" %>
+          <%= render :partial => "users/statuses" %>
+          <%= javascript_tag "new PeriodicalExecuter(function(){ new Ajax.Updater('statuses', '#{statuses_users_url}', {method:'get'}); }, 15)" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div id="main">
+	<p style="color: green"><%= flash[:notice] %></p>
+      <%= yield %>
+    </div>
+</body>
+</html>

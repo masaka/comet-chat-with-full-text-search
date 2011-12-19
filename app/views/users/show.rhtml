@@ -1,0 +1,13 @@
+<div id="form_container" <% if @edit_on %>class="active"<% end %>>
+
+<p><label for="login">ログインID</label><br/>
+<%= current_user.login %></p>
+
+<p><label for="name">名前</label><br/>
+<%= current_user.name %></p>
+
+<p><label for="email">Eメールアドレス</label><br/>
+<%= current_user.email %></p>
+
+<p><%= link_to 'チャットに戻る >>', '/chat?tag=' %></p>
+</div>

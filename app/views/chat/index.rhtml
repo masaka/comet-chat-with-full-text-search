@@ -1,0 +1,34 @@
+<script>
+  function reply(chatid) {
+    document.form1.message.value+= ' >' + chatid + ' ';
+    document.form1.message.focus();
+  }
+</script>
+<p>
+<%- form_tag({:action => "index"},{:method=> "GET"}) do -%>
+	<label for="body"><%= current_user.name %> さん、ども〜　　　　　　　　　　</label>
+	<%= text_field_tag('tag', params[:tag]) -%> 
+	<%= submit_tag '検索' %>
+<%- end -%></p>　
+<% if  params[:tag] == ''  || params[:tag] == nil then %>
+  <% session[:all]=1 %>
+<p>★★全件表示ードでは書き込み不可です★★ </p>
+<% else %>
+  <% session[:all]=0 %>
+  <% form_remote_tag(:html => {:name => 'form1'},:url => {:action => 'talk'}) do |f| %>
+    <%= text_area_tag :message, '', {:size => '60x5', :maxlength => '300'} %>
+    <%= submit_tag '書き込み' %>(最終更新 <%=h (Time.now).strftime("%d日 %H:%M") %>)<br />
+  <% end %>
+<% end %>
+
+
+
+<ul id="chat-list">
+  <% for chat in @chats %>
+    <%= render_component :action => 'show', :id => chat.id %>
+  <% end %>
+</ul>
+<%= meteor_strike 'chat', :uid => session[:name], :tag => session[:chat][:tag], :event => %Q{
+  new Ajax.Updater('chat-list', #{url_for(:action => 'event').to_json}, {
+    insertion: Insertion.Top, parameters: params})}
+%>

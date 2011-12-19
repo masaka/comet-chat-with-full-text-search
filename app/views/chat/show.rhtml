@@ -1,0 +1,10 @@
+<li>
+  <span><b><%=h @chat.name %></b> </span>
+  <span><%=h (@chat.created_at + 9*60*60).strftime(" (%m/%d %H:%M)") %> <a name="<%= @chat.id %>">ChatID[<%= @chat.id %>]</a></span> 
+<% if  session[:all] == 1 then %>
+  <span><%= (@chat.message.gsub(/\n/) { ' <br />' }).gsub(/#(\w+)/){'<a href="/chat?tag=%23' + $1 + '" class="tooltip"  title="' + $1 + 'を開きます" >#' + $1 + '</a>'}.gsub(/<br \/>(http:\/\/\S+)/) { '<br /><a href="' + URI.encode($1) + '">'  + $1 + '</a>' }.gsub(/>(\d+)/){'<a href="#' + $1 + '" class="tooltip"  title="' + Chat.find_by_id($1).name + 'さん曰く：' + strip_tags(Chat.find_by_id($1).message) + (Chat.find_by_id($1).created_at + 9*60*60).strftime(" (%m/%d %H:%M)") + '" >>' + $1 + '</a>'} + ' <br /><br />' %></span>
+<% else %>
+  <span><%= (@chat.message.gsub(/\n/) { ' <br />' }).gsub(/<br \/>(http:\/\/\S+)/) { '<br /><a href="' + URI.encode($1) + '">'  + $1 + '</a>' }.gsub(/>(\d+)/){'<a href="#' + $1 + '" class="tooltip"  title="' + Chat.find_by_id($1).name + 'さん曰く：'+ strip_tags(Chat.find_by_id($1).message) + (Chat.find_by_id($1).created_at + 9*60*60).strftime(" (%m/%d %H:%M)") + '" >>' + $1 + '</a>'} + '<input type="button" name="reply" value="返信" onclick="reply(' + @chat.id.to_s + ');"> <br /><br />' %></span>
+<% end %>
+</li>
+

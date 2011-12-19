@@ -1,0 +1,14 @@
+<div id="form_container" <% if @edit_on %>class="active"<% end %>>
+	<p><%= link_to 'チャットに戻る >>', '/chat?tag=' %></p>
+<% form_for (@user) do |f| -%>
+<p><label for="login">ログインID</label><br/>
+<%= f.text_field :login %>いわゆるID</p>
+<p><label for="name">名前</label><br/>
+<%= f.text_field :name %>名前（日本語名）入力してください。画面にはこの名前で表示されます</p>
+
+<p><label for="email">Eメールアドレス</label><br/>
+<%= current_user.email %></p>
+
+<p><%= submit_tag '更新' %></p>
+<% end -%>
+</div>

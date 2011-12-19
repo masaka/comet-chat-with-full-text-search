@@ -1,0 +1,9 @@
+<%# This query is put here so that the partial can easily be included in any view %>
+<% users = User.find(:all, :conditions => ["id!=?", current_user.id]) %>
+<% if users.any? %>
+  <ul id="statuses">
+    <% users.each do |user| %>
+      <li <% if user.inactive? %>class="inactive"<% end %>><%= link_to user.name, user_url(:id => user.id) %><span><%=h user.status %><%=h (user.updated_at + 9*60*60).strftime("(%d日 %H:%M)") %></span></li>
+    <% end %>
+  </ul>
+<% end %>

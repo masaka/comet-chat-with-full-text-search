@@ -1,0 +1,150 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+
+}
+
+
+#ja-container2 {
+	background:#FFF;
+}
+
+#ja-header {
+	display:none;
+	visibility:hidden;
+}
+#ja-headerwrap {
+	display:none;
+	visibility:hidden;
+}
+
+
+#ja-container2 {
+	padding:0;
+}
+#ja-mainbody-fr #ja-contentwrap {
+	float:none;
+	width:100%;
+}
+
+#ja-mainbody-fr #ja-col1 {
+	float:none;
+	width:100%;
+}
+
+#ja-content {
+	padding:0;
+}
+
+
+/* content ------------------- */
+
+.componentheading {
+	background-color:#900;
+	color:#FFF;
+	padding:5px;
+}
+
+img {
+	max-width:200px;
+	height:auto;
+}
+.article_column img {
+	max-width:200px;
+	height:auto;
+}
+
+table {
+}
+table tr ,
+table th ,
+table td {
+	display:inline;
+}
+
+embed {
+	display:none;
+	visibility:hidden;
+}
+
+.noniphone {
+	display:none;
+	visibility:hidden;
+}
+
+/* MAIN NAVIGATION
+--------------------------------------------------------- */
+
+#ja-pathway {
+	font-size:160%;
+	background:#900;
+	padding:5px 0 3px 10px ;
+	margin:0 0 10px 0;
+}
+
+#ja-pathway strong {
+	margin-right: 5px;
+	font-weight: bold;
+}
+
+#ja-pathway a {
+	text-decoration: none;
+	color:#FFF;
+	line-height:1.2;
+	font-weight: bold;
+}
+
+#ja-pathway img {
+	margin: 1px 5px;
+}
+
+#ja-pathway .moduletable {
+	background:none;
+	padding:0;
+	margin:0;
+}
+
+/* Twitter STYLE
+--------------------------------------------------------- */
+.twit-r .image,
+.twit-l .image {
+	width:55px;
+	text-align:center;
+	font-size:80%;
+}
+.twit-r .image img,
+.twit-l .image img{
+	width:30px;
+	height:auto;
+}
+.twit-r .com ,
+.twit-l .com {
+	width: 190px; 
+	margin:0 0 0 10px;
+}
+.twit-r .com {
+	margin:0 10px 0 0 ;
+}
+.twit-r .com .arrow,
+.twit-l .com .arrow { 
+	border-top: 10px solid #e6e6e6; 
+	border-left: 7px solid white;
+	border-right: non; 
+}
+.twit-l .com .arrow {
+	left:-7px;
+}
+.twit-r .com .arrow { 
+	border-top: 10px solid #e6e6e6; 
+	border-left:#e3e3e3;
+	border-right:7px solid white;
+	right:-7px;
+}
+
+
+
+.width50per {
+	float:none;
+	width:100%;
+}

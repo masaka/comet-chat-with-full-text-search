@@ -1,0 +1,34 @@
+= search_do
+
+Library for fulltext search integration with active record using multiple backends.
+
+Supports:
+Hyper Estraier (http://hyperestraier.sourceforge.net/) an ActiveRecord model.
+
+Original is written by scoop see
+- http://github.com/scoop/acts_as_searchable/tree/master
+- http://poocs.net/2006/4/6/introducing-acts-as-searchable
+
+This fork is maintained by MOROHASHI Kyosuke
+- http://github.com/moro/search_do/tree/master
+
+
+== Pre-requisites
+
+A working Hyper Estraier instance, setup instructions:
+
+* http://hyperestraier.sourceforge.net/nguide-en.html
+* http://pragmatig.wordpress.com/2008/05/06/getting-started-with-acts_as_searchable-on-ubuntu/
+
+At http://localhost:1978/ create one node for every model you want to use.
+When node_prefix(or node) in you config.yml is 'xx_test' then you have to create 
+xx_test_articles and xx_test_pages to index Article and Page (node + table_name).
+
+== Install
+
+* script/plugin install git://github.com/moro/search_do.git
+
+
+== Bugtracking
+* fork and request pull
+* send a message http://github.com/moro

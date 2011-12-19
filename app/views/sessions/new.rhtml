@@ -1,0 +1,19 @@
+<p style="color: green"><%= flash[:notice] %></p>
+
+<% form_tag session_path do -%>
+<p><label for="login">ログインID</label><br/>
+<%= text_field_tag 'login' %></p>
+
+<p><label for="password">パスワード</label><br/>
+<%= password_field_tag 'password' %></p>
+
+<!-- Uncomment this if you want this functionality
+<p><label for="remember_me">Remember me:</label>
+<%= check_box_tag 'remember_me' %></p>
+-->
+
+<p><%= submit_tag 'ログインする' %></p>
+<% end -%>
+
+<p><%= link_to 'アカウント作成 >>', '/users/new' %></p>
+<p><%= link_to 'パスワード忘れ・再設定 >>', '/forgot_passwords/new' %></p>
