@@ -1,0 +1,59 @@
+h1. 全文検索付きリアルタイムチャット
+
+これはcomet技術を用いたチャットシステムに全文検索機能を付けたものです。
+
+h2. 動作環境
+
+下記の環境で動作を確認しています。
+
+* CentOS 5.5
+* Hyper estraier 1.4.13
+* QDBM 1.8.77, Mecab 0.98
+* MySQL 5.0.77
+* ruby 1.8.6, rubygem 1.3.1, rails 2.3.5
+* shooting_star(gem)
+
+
+
+h2. インストール方法
+
+# RailsとMySQLが正常に動く状態にしてください
+  この状態でも基本的なチャット機能（ユーザ認証、チャットの書き込み、閲覧など）は動作します。
+# Hyper Estraierを設定してください
+  設定が正しければ全文検索が動作するようになります。
+# shooting_starを設定してください 
+  ブラウザ⇔サーバ間はhttpとは別のポートで通信します。下記config/database.ymlを参考にしてください。
+
+
+<pre>
+<code>
+production:
+  adapter: mysql
+  encoding: utf8
+  database: 【DB名】
+  socket: /var/lib/mysql/mysql.sock
+  pool: 5
+  username: 【DBユーザ名】
+  password: 【DBパスワード】
+  estraier:
+    host: 【HyperEstraierのホスト名もしくはIPアドレス】
+    user: 【HEのログインID】
+    password: 【HEのパスワード】
+    port: 【HEのポート番号】
+    node: 【HEのノード名】
+  shooting_star:
+    server: 【shooting_starが稼働するサーバ名】:443
+    shooter: druby://localhost:7123
+</code>
+</pre>
+
+* その他
+  オンラインサインアップ時の送信メール関連を設定を行って下さい。
+  設定が必要な箇所にはyour_何々という形で記載しているので、下記コマンドにより設定が必要な箇所を洗い出すことが出来ます。
+
+
+<pre>
+<code>
+$ find . -type f|xargs grep your_
+</code>
+</pre>
