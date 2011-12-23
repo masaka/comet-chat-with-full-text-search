@@ -19,7 +19,7 @@
 </head>
 <body　 class="<%= params[:controller] %>"　>
     <div id="header">
-      <h1><%= link_to 'vxChat', '/chat?tag=' %></h1>
+      <h1><%= link_to 'Chat', '/chat?tag=' %></h1>
       <% if logged_in? and current_user.valid? %>
         <div id="account"><%= link_to '設定', edit_user_path(current_user) %> <%= link_to 'ログアウト', session_url(:id => session.session_id), :method => :delete, :class => 'small delete' %></div>
         <ul id="nav">
