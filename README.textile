@@ -70,3 +70,4 @@ URLに含まれるタグ(tag)がチャット部屋の識別子になります。
 （このため、ユーザが自由にチャット部屋を作成できます。）
 書き込み内容にも自動的にタグが付与されます。
 
+!https://github.com/masaka/comet-chat-with-full-text-search/raw/master/sample01.png!
